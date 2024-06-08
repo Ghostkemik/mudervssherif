@@ -1249,7 +1249,7 @@ if geneldb == false then
 		local db = false
 
 		local function addForceFieldAndHighlight(model)
-			if model:FindFirstChildOfClass("Humanoid") and model.Name == player.Name then
+			if model:FindFirstChildOfClass("Humanoid") and model.Name ~= player.Name then
 				if not model:FindFirstChildOfClass("Highlight") then
 					local highlight = Instance.new("Highlight")
 					highlight.Parent = model
@@ -1267,7 +1267,7 @@ if geneldb == false then
 			wait(2)
 			local humanoid = model:FindFirstChildOfClass("Humanoid")
 			if db == true then
-				if humanoid and model.Name == player.Name then
+				if humanoid and model.Name ~= player.Name then
 					local connection
 					if db == true then
 						connection = RunService.Heartbeat:Connect(function()
@@ -1307,7 +1307,7 @@ if geneldb == false then
 
 		local function processExistingModels()
 			for _, model in pairs(workspace:GetDescendants()) do
-				if model:IsA("Model") and model:FindFirstChild("Humanoid") and model.Name == player.Name then
+				if model:IsA("Model") and model:FindFirstChild("Humanoid") and model.Name ~= player.Name then
 					addForceFieldAndHighlight(model)
 					continuouslyMonitorHumanoidHealth(model)
 					print("Processed existing model")
@@ -1317,7 +1317,7 @@ if geneldb == false then
 
 		local function removeAllHighlights()
 			for _, model in pairs(workspace:GetDescendants()) do
-				if model:IsA("Model") and model:FindFirstChild("Humanoid") and model.Name == player.Name then
+				if model:IsA("Model") and model:FindFirstChild("Humanoid") and model.Name ~= player.Name then
 					local highlight = model:FindFirstChildOfClass("Highlight")
 					if highlight then
 						highlight:Destroy()
@@ -1342,7 +1342,7 @@ if geneldb == false then
 				toggleButtonStateOpen()
 
 				workspace.DescendantAdded:Connect(function(model)
-					if model:IsA("Model") and model.Name == player.Name then
+					if model:IsA("Model") and model.Name ~= player.Name then
 						addForceFieldAndHighlight(model)
 						continuouslyMonitorHumanoidHealth(model)
 						print("Processed new model")
