@@ -1212,31 +1212,31 @@ TextButton_7.TextSize = 14.000
 
 -- Scripts:
 
-local function AWGOS_fake_script() -- Glow.LocalScript 
+local function XDZCNKL_fake_script() -- Glow.LocalScript 
 	local scriptt = Instance.new('LocalScript', Glow)
 
 	script.Parent.Image = "http://www.roblox.com/Thumbs/Avatar.ashx?x=100&y=100&userId=" .. game.Players.LocalPlayer.UserId
 end
-coroutine.wrap(AWGOS_fake_script)()
-local function IHEU_fake_script() -- TextLabel.LocalScript 
+coroutine.wrap(XDZCNKL_fake_script)()
+local function ABAINV_fake_script() -- TextLabel.LocalScript 
 	local scriptt = Instance.new('LocalScript', TextLabel)
 
 	script.Parent.Text = game.Players.LocalPlayer.DisplayName
 end
-coroutine.wrap(IHEU_fake_script)()
-local function SRCQBG_fake_script() -- TextLabel_2.LocalScript 
+coroutine.wrap(ABAINV_fake_script)()
+local function VCSE_fake_script() -- TextLabel_2.LocalScript 
 	local scriptt = Instance.new('LocalScript', TextLabel_2)
 
 	script.Parent.Text = "@"..game.Players.LocalPlayer.Name
 end
-coroutine.wrap(SRCQBG_fake_script)()
-local function KJWTI_fake_script() -- TextLabel_3.LocalScript 
+coroutine.wrap(VCSE_fake_script)()
+local function RCWVSXX_fake_script() -- TextLabel_3.LocalScript 
 	local scriptt = Instance.new('LocalScript', TextLabel_3)
 
 	script.Parent.Text = "Murderers VS Sheriffs Duels"
 end
-coroutine.wrap(KJWTI_fake_script)()
-local function ZKHLR_fake_script() -- TextButton.LocalScript 
+coroutine.wrap(RCWVSXX_fake_script)()
+local function WJJRKBW_fake_script() -- TextButton.LocalScript 
 	local scriptt = Instance.new('LocalScript', TextButton)
 
 	local RunService = game:GetService("RunService")
@@ -1245,7 +1245,7 @@ local function ZKHLR_fake_script() -- TextButton.LocalScript
 	local db = false
 	
 	local function addForceFieldAndHighlight(model)
-		if model:FindFirstChildOfClass("Humanoid") and model.Name == player.Name then
+		if model:FindFirstChildOfClass("Humanoid") and model.Name ~= player.Name then
 			if not model:FindFirstChildOfClass("Highlight") then
 				local highlight = Instance.new("Highlight")
 				highlight.Parent = model
@@ -1263,7 +1263,7 @@ local function ZKHLR_fake_script() -- TextButton.LocalScript
 		wait(2)
 		local humanoid = model:FindFirstChildOfClass("Humanoid")
 	   if db == true then
-			if humanoid and model.Name == player.Name then
+			if humanoid and model.Name ~= player.Name then
 				local connection
 			if db == true then
 					connection = RunService.Heartbeat:Connect(function()
@@ -1303,7 +1303,7 @@ local function ZKHLR_fake_script() -- TextButton.LocalScript
 	
 	local function processExistingModels()
 		for _, model in pairs(workspace:GetDescendants()) do
-			if model:IsA("Model") and model.Name == player.Name then
+			if model:IsA("Model") and model.Name ~= player.Name then
 				addForceFieldAndHighlight(model)
 				continuouslyMonitorHumanoidHealth(model)
 				print("Processed existing model")
@@ -1313,7 +1313,7 @@ local function ZKHLR_fake_script() -- TextButton.LocalScript
 	
 	local function removeAllHighlights()
 		for _, model in pairs(workspace:GetDescendants()) do
-			if model:IsA("Model") and model.Name == player.Name then
+			if model:IsA("Model") and model.Name ~= player.Name then
 				local highlight = model:FindFirstChildOfClass("Highlight")
 				if highlight then
 					highlight:Destroy()
@@ -1349,16 +1349,16 @@ local function ZKHLR_fake_script() -- TextButton.LocalScript
 	end)
 	
 end
-coroutine.wrap(ZKHLR_fake_script)()
-local function IEEBT_fake_script() -- TextButton_2.LocalScript 
+coroutine.wrap(WJJRKBW_fake_script)()
+local function SKJJ_fake_script() -- TextButton_2.LocalScript 
 	local scriptt = Instance.new('LocalScript', TextButton_2)
 
 	script.Parent.MouseButton1Click:Connect(function()
 		script.Parent.Parent.Parent.Parent.Parent.Parent.SettingsFrame.Visible = true
 	end)
 end
-coroutine.wrap(IEEBT_fake_script)()
-local function IKTDP_fake_script() -- Keybind_6.LocalScript 
+coroutine.wrap(SKJJ_fake_script)()
+local function RLMCUIG_fake_script() -- Keybind_6.LocalScript 
 	local scriptt = Instance.new('LocalScript', Keybind_6)
 
 	local TextButton = script.Parent.TextButton
@@ -1384,33 +1384,33 @@ local function IKTDP_fake_script() -- Keybind_6.LocalScript
 	end)
 	
 end
-coroutine.wrap(IKTDP_fake_script)()
-local function EFUIO_fake_script() -- TextButton_5.LocalScript 
+coroutine.wrap(RLMCUIG_fake_script)()
+local function OZRZA_fake_script() -- TextButton_5.LocalScript 
 	local scriptt = Instance.new('LocalScript', TextButton_5)
 
 	script.Parent.MouseButton1Click:Connect(function()
 		script.Parent.Parent.Parent.SettingsFrame.Visible = false
 	end)
 end
-coroutine.wrap(EFUIO_fake_script)()
-local function DJHSIW_fake_script() -- TextButton_6.LocalScript 
+coroutine.wrap(OZRZA_fake_script)()
+local function GBTZ_fake_script() -- TextButton_6.LocalScript 
 	local scriptt = Instance.new('LocalScript', TextButton_6)
 
 	script.Parent.MouseButton1Click:Connect(function()
 		script.Parent.Parent.Parent.Warn.Visible = false
 	end)
 end
-coroutine.wrap(DJHSIW_fake_script)()
-local function TASR_fake_script() -- TextButton_7.LocalScript 
-	local script = Instance.new('LocalScript', TextButton_7)
+coroutine.wrap(GBTZ_fake_script)()
+local function IDJFKM_fake_script() -- TextButton_7.LocalScript 
+	local scriptt = Instance.new('LocalScript', TextButton_7)
 
 	script.Parent.MouseButton1Click:Connect(function()
 		script.Parent.Parent.Parent.MainContainer.Visible = true
 		script.Parent.Parent.Parent.OpenBtn.Visible = false
 	end)
 end
-coroutine.wrap(TASR_fake_script)()
-local function VCXGE_fake_script() -- Sidebar.LocalScript 
+coroutine.wrap(IDJFKM_fake_script)()
+local function FQWFLY_fake_script() -- Sidebar.LocalScript 
 	local scriptt = Instance.new('LocalScript', Sidebar)
 
 	local TextLabel = script.Parent.Canvas.Container.OpenBtn.Inactive.Main.Keybind.TextLabel
@@ -1467,4 +1467,4 @@ local function VCXGE_fake_script() -- Sidebar.LocalScript
 	end)
 	
 end
-coroutine.wrap(VCXGE_fake_script)()
+coroutine.wrap(FQWFLY_fake_script)()
