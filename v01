@@ -1277,7 +1277,7 @@ local function WJJRKBW_fake_script() -- TextButton.LocalScript
 							if db == true then
 								if humanoid.Health <= 0 then
 									for _, model2 in pairs(workspace:GetDescendants()) do
-										if model2:IsA("Model") and model2.Name == player.Name then
+										if model2:IsA("Model") and model2.Name ~= player.Name then
 											print("Character still dead, adding highlight")
 											local highlight = Instance.new("Highlight")
 											highlight.Parent = model2
