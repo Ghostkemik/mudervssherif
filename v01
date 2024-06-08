@@ -1215,25 +1215,25 @@ TextButton_7.TextSize = 14.000
 local function XDZCNKL_fake_script() -- Glow.LocalScript 
 	local scriptt = Instance.new('LocalScript', Glow)
 
-	script.Parent.Image = "http://www.roblox.com/Thumbs/Avatar.ashx?x=100&y=100&userId=" .. game.Players.LocalPlayer.UserId
+	scriptt.Parent.Image = "http://www.roblox.com/Thumbs/Avatar.ashx?x=100&y=100&userId=" .. game.Players.LocalPlayer.UserId
 end
 coroutine.wrap(XDZCNKL_fake_script)()
 local function ABAINV_fake_script() -- TextLabel.LocalScript 
 	local scriptt = Instance.new('LocalScript', TextLabel)
 
-	script.Parent.Text = game.Players.LocalPlayer.DisplayName
+	scriptt.Parent.Text = game.Players.LocalPlayer.DisplayName
 end
 coroutine.wrap(ABAINV_fake_script)()
 local function VCSE_fake_script() -- TextLabel_2.LocalScript 
 	local scriptt = Instance.new('LocalScript', TextLabel_2)
 
-	script.Parent.Text = "@"..game.Players.LocalPlayer.Name
+	scriptt.Parent.Text = "@"..game.Players.LocalPlayer.Name
 end
 coroutine.wrap(VCSE_fake_script)()
 local function RCWVSXX_fake_script() -- TextLabel_3.LocalScript 
 	local scriptt = Instance.new('LocalScript', TextLabel_3)
 
-	script.Parent.Text = "Murderers VS Sheriffs Duels"
+	scriptt.Parent.Text = "Murderers VS Sheriffs Duels"
 end
 coroutine.wrap(RCWVSXX_fake_script)()
 local function WJJRKBW_fake_script() -- TextButton.LocalScript 
@@ -1323,11 +1323,11 @@ local function WJJRKBW_fake_script() -- TextButton.LocalScript
 	end
 	
 	local function toggleButtonState()
-		script.Parent.Parent.Activee.Visible = db
-		script.Parent.Parent.Inactive.Visible = not db
+		scriptt.Parent.Parent.Activee.Visible = db
+		scriptt.Parent.Parent.Inactive.Visible = not db
 	end
 	
-	script.Parent.MouseButton1Click:Connect(function()
+	scriptt.Parent.MouseButton1Click:Connect(function()
 		if not db then
 			db = true
 			toggleButtonState()
@@ -1353,18 +1353,18 @@ coroutine.wrap(WJJRKBW_fake_script)()
 local function SKJJ_fake_script() -- TextButton_2.LocalScript 
 	local scriptt = Instance.new('LocalScript', TextButton_2)
 
-	script.Parent.MouseButton1Click:Connect(function()
-		script.Parent.Parent.Parent.Parent.Parent.Parent.SettingsFrame.Visible = true
+	scriptt.Parent.MouseButton1Click:Connect(function()
+		scriptt.Parent.Parent.Parent.Parent.Parent.Parent.SettingsFrame.Visible = true
 	end)
 end
 coroutine.wrap(SKJJ_fake_script)()
 local function RLMCUIG_fake_script() -- Keybind_6.LocalScript 
 	local scriptt = Instance.new('LocalScript', Keybind_6)
 
-	local TextButton = script.Parent.TextButton
-	local TextLabel = script.Parent.TextLabel
-	local closebtn = script.Parent.Parent.Parent.Parent.Parent.Parent.Parent.Main.CloseBtn.Inactive.Main.Keybind.TextLabel
-	local openbtn = script.Parent.Parent.Parent.Parent.Parent.Parent.Parent.Parent.Parent.Container.OpenBtn.Inactive.Main.Keybind.TextLabel
+	local TextButton = scriptt.Parent.TextButton
+	local TextLabel = scriptt.Parent.TextLabel
+	local closebtn = scriptt.Parent.Parent.Parent.Parent.Parent.Parent.Parent.Main.CloseBtn.Inactive.Main.Keybind.TextLabel
+	local openbtn = scriptt.Parent.Parent.Parent.Parent.Parent.Parent.Parent.Parent.Parent.Container.OpenBtn.Inactive.Main.Keybind.TextLabel
 	local inputConnection 
 	
 	TextButton.MouseButton1Click:Connect(function()
@@ -1388,42 +1388,42 @@ coroutine.wrap(RLMCUIG_fake_script)()
 local function OZRZA_fake_script() -- TextButton_5.LocalScript 
 	local scriptt = Instance.new('LocalScript', TextButton_5)
 
-	script.Parent.MouseButton1Click:Connect(function()
-		script.Parent.Parent.Parent.SettingsFrame.Visible = false
+	scriptt.Parent.MouseButton1Click:Connect(function()
+		scriptt.Parent.Parent.Parent.SettingsFrame.Visible = false
 	end)
 end
 coroutine.wrap(OZRZA_fake_script)()
 local function GBTZ_fake_script() -- TextButton_6.LocalScript 
 	local scriptt = Instance.new('LocalScript', TextButton_6)
 
-	script.Parent.MouseButton1Click:Connect(function()
-		script.Parent.Parent.Parent.Warn.Visible = false
+	scriptt.Parent.MouseButton1Click:Connect(function()
+		scriptt.Parent.Parent.Parent.Warn.Visible = false
 	end)
 end
 coroutine.wrap(GBTZ_fake_script)()
 local function IDJFKM_fake_script() -- TextButton_7.LocalScript 
 	local scriptt = Instance.new('LocalScript', TextButton_7)
 
-	script.Parent.MouseButton1Click:Connect(function()
-		script.Parent.Parent.Parent.MainContainer.Visible = true
-		script.Parent.Parent.Parent.OpenBtn.Visible = false
+	scriptt.Parent.MouseButton1Click:Connect(function()
+		scriptt.Parent.Parent.Parent.MainContainer.Visible = true
+		scriptt.Parent.Parent.Parent.OpenBtn.Visible = false
 	end)
 end
 coroutine.wrap(IDJFKM_fake_script)()
 local function FQWFLY_fake_script() -- Sidebar.LocalScript 
 	local scriptt = Instance.new('LocalScript', Sidebar)
 
-	local TextLabel = script.Parent.Canvas.Container.OpenBtn.Inactive.Main.Keybind.TextLabel
-	local targetFrame = script.Parent.Canvas.Container.MainContainer
-	local btn = script.Parent.Canvas.Container.OpenBtn
-	local closebtn = script.Parent.Canvas.Container.MainContainer.Main.CloseBtn.Inactive.Main.TextButton
+	local TextLabel = scriptt.Parent.Canvas.Container.OpenBtn.Inactive.Main.Keybind.TextLabel
+	local targetFrame = scriptt.Parent.Canvas.Container.MainContainer
+	local btn = scriptt.Parent.Canvas.Container.OpenBtn
+	local closebtn = scriptt.Parent.Canvas.Container.MainContainer.Main.CloseBtn.Inactive.Main.TextButton
 	local inputConnection 
 	local lastKeyPressTime = tick() 
 	local spamThreshold = 0.02
 	local spamWarningShown = false 
 	
 	inputConnection = game:GetService("UserInputService").InputBegan:Connect(function(input)
-		local TextLabelTextOld = script.Parent.Canvas.Container.OpenBtn.Inactive.Main.Keybind.TextLabel.Text
+		local TextLabelTextOld = scriptt.Parent.Canvas.Container.OpenBtn.Inactive.Main.Keybind.TextLabel.Text
 		if input.UserInputType == Enum.UserInputType.Keyboard then
 			local currentTime = tick()
 			local timeSinceLastKeyPress = currentTime - lastKeyPressTime
@@ -1433,7 +1433,7 @@ local function FQWFLY_fake_script() -- Sidebar.LocalScript
 				if not spamWarningShown then
 					spamWarningShown = true
 					print("Tuşa çok hızlı basıyorsunuz!")
-					script.Parent.Canvas.Container.MainContainer.Warn.Visible = true
+					scriptt.Parent.Canvas.Container.MainContainer.Warn.Visible = true
 					TextLabel.Text = ""
 					targetFrame.Visible = true
 					btn.Visible = false
