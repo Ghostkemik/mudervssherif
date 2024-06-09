@@ -1271,25 +1271,21 @@ if geneldb == false then
 							local connection
 							connection = RunService.Heartbeat:Connect(function()
 								if humanoid.Health <= 0 then
-									print("Character died")
 									connection:Disconnect()
-
 									wait(5)
-									print("Waiting time finished")
-									wait(3)
 									if db == true then
 										for _, model4 in pairs(workspace:GetDescendants()) do
 											task.spawn(function()
 												if model4:IsA("Model") and model4.Name ~= player.Name then
 													local humanoid2 = model4:FindFirstChildOfClass("Humanoid")
 													if humanoid2 and humanoid2.Health >= 0 then
-														print("Character still dead, adding highlight")
 														local highlight = Instance.new("Highlight")
 														highlight.Parent = model4
 														highlight.FillColor = Color3.fromRGB(255, 0, 0) 
 														highlight.FillTransparency = 0.5
 														highlight.OutlineTransparency = 0.5
-														print("Added highlight to model with Humanoid health greater than 0")
+														print("+")
+														wait(2)
 														continuouslyMonitorHumanoidHealth()
 													end
 												end
@@ -1348,7 +1344,7 @@ if geneldb == false then
 					if model:IsA("Model") and model.Name ~= player.Name then
 						addForceFieldAndHighlight(model)
 						continuouslyMonitorHumanoidHealth()
-						print("Processed new model")
+						print("+")
 					end
 				end)
 
