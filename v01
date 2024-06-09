@@ -1245,53 +1245,46 @@ if geneldb == false then
 
 		local RunService = game:GetService("RunService")
 		local player = game.Players.LocalPlayer
-		local modelmain
 		local db = false
 
-		local function addForceFieldAndHighlight(model)
-			task.spawn(function()
-				if model:FindFirstChildOfClass("Humanoid") and model.Name ~= player.Name then
-					if not model:FindFirstChildOfClass("Highlight") then
-						local highlight = Instance.new("Highlight")
-						highlight.Parent = model
-						highlight.FillColor = Color3.fromRGB(255, 0, 0) 
-						highlight.FillTransparency = 0.5
-						highlight.OutlineTransparency = 0.5
-						modelmain = model
-					end
-				end
-			end)
-		end
-		
-		local function wadd()
-			local connection
-			connection = workspace.DescendantAdded:Connect(function(model)
-				task.spawn(function()
-					if model:IsA("Model") and model:FindFirstChild("Humanoid") and model.Name ~= player.Name then
-						addForceFieldAndHighlight(model)
-						if db == false then
-							connection:Disconnect()
+		local function addHighlights()
+			local conntection
+			conntection = RunService.Heartbeat:Connect(function()
+				wait(3)
+				if db == true then
+					for _, model in pairs(workspace:GetDescendants()) do
+						if db == true then
+							task.spawn(function()
+								if model:IsA("Model") and model:FindFirstChild("Humanoid") and model.Name ~= player.Name then
+									if db == true then
+										if model:FindFirstChild("Highlight") then
+											--
+										else
+											local highlight = Instance.new("Highlight")
+											highlight.Parent = model
+											highlight.FillColor = Color3.fromRGB(255, 0, 0) 
+											highlight.FillTransparency = 0.5
+											highlight.OutlineTransparency = 0.5
+										end
+									else
+										conntection:Disconnect()
+									end
+								end
+							end)
+						else
+							conntection:Disconnect()
 						end
 					end
-				end)
+				else
+					conntection:Disconnect()
+				end
 			end)
-		end
-
-		local function processExistingModels()
-			for _, model in pairs(workspace:GetDescendants()) do
-				task.spawn(function()
-					if model:IsA("Model") and model:FindFirstChild("Humanoid") and model.Name ~= player.Name then
-						addForceFieldAndHighlight(model)
-						print("Processed existing model")
-					end
-				end)
-			end
 		end
 
 		local function removeAllHighlights()
 			for _, model in pairs(workspace:GetDescendants()) do
 				task.spawn(function()
-					if model:IsA("Model") and model:FindFirstChild("Humanoid") and model.Name ~= player.Name then
+					if model:IsA("Model") and model:FindFirstChild("Humanoid") then
 						local highlight = model:FindFirstChildOfClass("Highlight")
 						if highlight then
 							highlight:Destroy()
@@ -1315,8 +1308,7 @@ if geneldb == false then
 			if not db then
 				db = true
 				toggleButtonStateOpen()
-				wadd()
-				processExistingModels()
+				
 			else
 				db = false
 				toggleButtonStateClose()
