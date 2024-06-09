@@ -1611,19 +1611,19 @@ local function ZXQTH_fake_script() -- TextButton_2.LocalScript
 			local rootPart = character.HumanoidRootPart
 			local desiredHeight = 0.5 -- Karakterin ayaklarının hemen altında sabit yükseklik
 			local newPart = Instance.new("Part")
-			newPart.Name = "npoloit"
-			newPart.Size = Vector3.new(20, 0.2, 20)
-			newPart.Anchored = true
-			newPart.Transparency = 1
-			newPart.CanCollide = true
-			newPart.Position = Vector3.new(rootPart.Position.X, rootPart.Position.Y - desiredHeight, rootPart.Position.Z)
+			local newPart = Instance.new("Part")
+			newPart.Name = "BasePartName"
+			newPart.Size = Vector3.new(20, 0.2, 20) 
+			newPart.Anchored = true 
+			newPart.CanCollide = true 
+			newPart.Position = Vector3.new(0, 46.625003814697266, 0)
 			newPart.Parent = workspace
 
 			-- Parçayı sürekli olarak karakterin ayağının altında tutan fonksiyon
 			local function updatePartPosition()
 				if character and character:FindFirstChild("HumanoidRootPart") then
 					local rootPart = character.HumanoidRootPart
-					local desiredHeight = 0 
+					local desiredHeight = 0 -- Karakterin yerden sabit yükseklik, ihtiyacınıza göre ayarlayabilirsiniz
 					newPart.Position = Vector3.new(rootPart.Position.X, desiredHeight, rootPart.Position.Z)
 				end
 			end
