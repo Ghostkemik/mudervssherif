@@ -1308,6 +1308,7 @@ if geneldb == false then
 			if not db then
 				db = true
 				toggleButtonStateOpen()
+				addHighlights()
 				
 			else
 				db = false
