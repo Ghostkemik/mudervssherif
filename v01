@@ -1264,7 +1264,7 @@ if geneldb == false then
 		local function wadd()
 			local connection
 			connection = workspace.DescendantAdded:Connect(function(model)
-				if model:IsA("Model") and model.Name ~= player.Name then
+				if model:IsA("Model") and model:FindFirstChild("Humanoid") and model.Name ~= player.Name then
 					addForceFieldAndHighlight(model)
 					if db == false then
 						connection:Disconnect()
