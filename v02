@@ -1588,17 +1588,25 @@ local function ZXQTH_fake_script() -- TextButton_2.LocalScript
 	local character = player.Character or player.CharacterAdded:Wait()
 
 	local function addWallHack()
-		for _, model in pairs(workspace:GetChildren()) do
-			task.spawn(function()
-				if not model:FindFirstChildOfClass("Humanoid") then
-					if model:IsA("BasePart") and model.Name ~= "npoloit" then
-						model.CanQuery = false
-						model.CanCollide = false
+		local function projs(model)
+			for _, model in pairs(model:GetChildren()) do
+				task.spawn(function()
+					if not model:FindFirstChildOfClass("Humanoid") then
+						if model:IsA("Folder") then
+							projs(model)
+						else
+							if model:IsA("BasePart") and model.Name ~= "npoloit" then
+								model.CanQuery = false
+								model.CanCollide = false
+								print(model)
+							end
+						end
 					end
-				end
-			end)
+				end)
+			end
 		end
 
+		projs(game.Workspace)
 		if character and character:FindFirstChild("HumanoidRootPart") then
 			local rootPart = character.HumanoidRootPart
 			local desiredHeight = 0.5 -- Karakterin ayaklarının hemen altında sabit yükseklik
