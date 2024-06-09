@@ -1263,7 +1263,7 @@ if geneldb == false then
 
 		local connection
 
-		local function continuouslyMonitorHumanoidHealth(model)
+		local function continuouslyMonitorHumanoidHealth()
 			wait(2)
 			for _, model3 in pairs(workspace:GetDescendants()) do
 				task.spawn(function()
@@ -1290,7 +1290,7 @@ if geneldb == false then
 													highlight.FillTransparency = 0.5
 													highlight.OutlineTransparency = 0.5
 													print("Added highlight to model with Humanoid health greater than 0")
-													continuouslyMonitorHumanoidHealth(model)
+													continuouslyMonitorHumanoidHealth()
 												end
 											end
 										end
@@ -1311,7 +1311,7 @@ if geneldb == false then
 				task.spawn(function()
 					if model:IsA("Model") and model:FindFirstChild("Humanoid") and model.Name ~= player.Name then
 						addForceFieldAndHighlight(model)
-						continuouslyMonitorHumanoidHealth(model)
+						continuouslyMonitorHumanoidHealth()
 						print("Processed existing model")
 					end
 				end)
@@ -1349,7 +1349,7 @@ if geneldb == false then
 				workspace.DescendantAdded:Connect(function(model)
 					if model:IsA("Model") and model.Name ~= player.Name then
 						addForceFieldAndHighlight(model)
-						continuouslyMonitorHumanoidHealth(model)
+						continuouslyMonitorHumanoidHealth()
 						print("Processed new model")
 					end
 				end)
