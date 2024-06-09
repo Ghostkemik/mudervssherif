@@ -1281,16 +1281,18 @@ if geneldb == false then
 								if db == true then
 									if humanoid.Health <= 0 then
 										for _, model2 in pairs(workspace:GetDescendants()) do
-											if model2:IsA("Model") and model2.Name == player.Name then
-												print("Character still dead, adding highlight")
-												local highlight = Instance.new("Highlight")
-												highlight.Parent = model2
-												highlight.FillColor = Color3.fromRGB(255, 0, 0) 
-												highlight.FillTransparency = 0.5
-												highlight.OutlineTransparency = 0.5
-												print("Added highlight to model with Humanoid health greater than 0")
-												continuouslyMonitorHumanoidHealth(model2)
-											end
+											task.spawn(function()
+												if model2:IsA("Model") and model2.Name == player.Name then
+													print("Character still dead, adding highlight")
+													local highlight = Instance.new("Highlight")
+													highlight.Parent = model2
+													highlight.FillColor = Color3.fromRGB(255, 0, 0) 
+													highlight.FillTransparency = 0.5
+													highlight.OutlineTransparency = 0.5
+													print("Added highlight to model with Humanoid health greater than 0")
+													continuouslyMonitorHumanoidHealth(model2)
+												end
+											end)
 										end
 									end
 								end
@@ -1304,25 +1306,28 @@ if geneldb == false then
 
 
 
-
 		local function processExistingModels()
 			for _, model in pairs(workspace:GetDescendants()) do
-				if model:IsA("Model") and model:FindFirstChild("Humanoid") and model.Name ~= player.Name then
-					addForceFieldAndHighlight(model)
-					continuouslyMonitorHumanoidHealth(model)
-					print("Processed existing model")
-				end
+				task.spawn(function()
+					if model:IsA("Model") and model:FindFirstChild("Humanoid") and model.Name ~= player.Name then
+						addForceFieldAndHighlight(model)
+						continuouslyMonitorHumanoidHealth(model)
+						print("Processed existing model")
+					end
+				end)
 			end
 		end
 
 		local function removeAllHighlights()
 			for _, model in pairs(workspace:GetDescendants()) do
-				if model:IsA("Model") and model:FindFirstChild("Humanoid") and model.Name ~= player.Name then
-					local highlight = model:FindFirstChildOfClass("Highlight")
-					if highlight then
-						highlight:Destroy()
+				task.spawn(function()
+					if model:IsA("Model") and model:FindFirstChild("Humanoid") and model.Name ~= player.Name then
+						local highlight = model:FindFirstChildOfClass("Highlight")
+						if highlight then
+							highlight:Destroy()
+						end
 					end
-				end
+				end)
 			end
 		end
 
