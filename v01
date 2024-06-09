@@ -1249,27 +1249,31 @@ if geneldb == false then
 		local db = false
 
 		local function addForceFieldAndHighlight(model)
-			if model:FindFirstChildOfClass("Humanoid") and model.Name ~= player.Name then
-				if not model:FindFirstChildOfClass("Highlight") then
-					local highlight = Instance.new("Highlight")
-					highlight.Parent = model
-					highlight.FillColor = Color3.fromRGB(255, 0, 0) 
-					highlight.FillTransparency = 0.5
-					highlight.OutlineTransparency = 0.5
-					modelmain = model
+			task.spawn(function()
+				if model:FindFirstChildOfClass("Humanoid") and model.Name ~= player.Name then
+					if not model:FindFirstChildOfClass("Highlight") then
+						local highlight = Instance.new("Highlight")
+						highlight.Parent = model
+						highlight.FillColor = Color3.fromRGB(255, 0, 0) 
+						highlight.FillTransparency = 0.5
+						highlight.OutlineTransparency = 0.5
+						modelmain = model
+					end
 				end
-			end
+			end)
 		end
 		
 		local function wadd()
 			local connection
 			connection = workspace.DescendantAdded:Connect(function(model)
-				if model:IsA("Model") and model:FindFirstChild("Humanoid") and model.Name ~= player.Name then
-					addForceFieldAndHighlight(model)
-					if db == false then
-						connection:Disconnect()
+				task.spawn(function()
+					if model:IsA("Model") and model:FindFirstChild("Humanoid") and model.Name ~= player.Name then
+						addForceFieldAndHighlight(model)
+						if db == false then
+							connection:Disconnect()
+						end
 					end
-				end
+				end)
 			end)
 		end
 
