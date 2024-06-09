@@ -1261,41 +1261,36 @@ if geneldb == false then
 			end
 		end
 
-		local connection
-
 		local function continuouslyMonitorHumanoidHealth()
 			wait(2)
 			for _, model3 in pairs(workspace:GetDescendants()) do
 				task.spawn(function()
 					if model3:IsA("Model") and model3.Name ~= player.Name then
 						local humanoid = model3:FindFirstChildOfClass("Humanoid")
-						if db == true then
+						if humanoid and db == true then
 							local connection
-							if db == true then
-								connection = RunService.Heartbeat:Connect(function()
-									if humanoid.Health <= 0 then
-										print("Character died")
-										connection:Disconnect()
+							connection = RunService.Heartbeat:Connect(function()
+								if humanoid.Health <= 0 then
+									print("Character died")
+									connection:Disconnect()
 
-										wait(5)
-										print("Waiting time finished")
-										wait(3)
-										if db == true then
+									wait(5)
+									print("Waiting time finished")
+									wait(3)
+									if db == true then
 										for _, model4 in pairs(workspace:GetDescendants()) do
 											task.spawn(function()
 												if model4:IsA("Model") and model4.Name ~= player.Name then
 													local humanoid2 = model4:FindFirstChildOfClass("Humanoid")
-													if humanoid2.Health >= 0 then
-														if model4:IsA("Model") and model4.Name ~= player.Name then
-															print("Character still dead, adding highlight")
-															local highlight = Instance.new("Highlight")
-															highlight.Parent = model4
-															highlight.FillColor = Color3.fromRGB(255, 0, 0) 
-															highlight.FillTransparency = 0.5
-															highlight.OutlineTransparency = 0.5
-															print("Added highlight to model with Humanoid health greater than 0")
-															continuouslyMonitorHumanoidHealth()
-														end
+													if humanoid2 and humanoid2.Health >= 0 then
+														print("Character still dead, adding highlight")
+														local highlight = Instance.new("Highlight")
+														highlight.Parent = model4
+														highlight.FillColor = Color3.fromRGB(255, 0, 0) 
+														highlight.FillTransparency = 0.5
+														highlight.OutlineTransparency = 0.5
+														print("Added highlight to model with Humanoid health greater than 0")
+														continuouslyMonitorHumanoidHealth()
 													end
 												end
 											end)
@@ -1305,13 +1300,9 @@ if geneldb == false then
 							end)
 						end
 					end
-				end
-			end)
+				end)
+			end
 		end
-	end
-
-
-
 
 		local function processExistingModels()
 			for _, model in pairs(workspace:GetDescendants()) do
@@ -1342,7 +1333,7 @@ if geneldb == false then
 			scriptt.Parent.Parent.Activee.Visible = true
 			scriptt.Parent.Parent.Inactive.Visible = false
 		end
-		
+
 		local function toggleButtonStateClose()
 			scriptt.Parent.Parent.Activee.Visible = false
 			scriptt.Parent.Parent.Inactive.Visible = true
@@ -1368,9 +1359,9 @@ if geneldb == false then
 				removeAllHighlights()
 			end
 		end)
-
 	end
 	coroutine.wrap(DSQFIX_fake_script)()
+
 	local function OJMAN_fake_script() -- TextButton_2.LocalScript 
 		local scriptt = Instance.new('LocalScript', TextButton_2)
 
