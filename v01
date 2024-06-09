@@ -1260,44 +1260,23 @@ if geneldb == false then
 				end
 			end
 		end
-
-		local function continuouslyMonitorHumanoidHealth()
-			wait(2)
-			for _, model3 in pairs(workspace:GetDescendants()) do
-				task.spawn(function()
-					if model3:IsA("Model") and model3.Name ~= player.Name then
-						local humanoid = model3:FindFirstChildOfClass("Humanoid")
-						if humanoid and db == true then
-							local connection
-							connection = RunService.Heartbeat:Connect(function()
-								if humanoid.Health <= 0 then
-									connection:Disconnect()
-									wait(5)
-									if db == true then
-										for _, model4 in pairs(workspace:GetDescendants()) do
-											task.spawn(function()
-												if model4:IsA("Model") and model4.Name ~= player.Name then
-													local humanoid2 = model4:FindFirstChildOfClass("Humanoid")
-													if humanoid2 and humanoid2.Health >= 0 then
-														local highlight = Instance.new("Highlight")
-														highlight.Parent = model4
-														highlight.FillColor = Color3.fromRGB(255, 0, 0) 
-														highlight.FillTransparency = 0.5
-														highlight.OutlineTransparency = 0.5
-														print("+")
-														wait(2)
-														continuouslyMonitorHumanoidHealth()
-													end
-												end
-											end)
-										end
-									end
-								end
-							end)
+		
+		local function wadd()
+			local connection
+			connection = RunService.Heartbeat:Connect(function()
+				workspace.DescendantAdded:Connect(function(model)
+					if model:IsA("Model") and model.Name ~= player.Name then
+						connection:Disconnect()
+						addForceFieldAndHighlight(model)
+						print("+")
+						if db == false then
+							connection:Disconnect()
+						else
+							wadd()
 						end
 					end
 				end)
-			end
+			end)
 		end
 
 		local function processExistingModels()
@@ -1305,7 +1284,6 @@ if geneldb == false then
 				task.spawn(function()
 					if model:IsA("Model") and model:FindFirstChild("Humanoid") and model.Name ~= player.Name then
 						addForceFieldAndHighlight(model)
-						continuouslyMonitorHumanoidHealth()
 						print("Processed existing model")
 					end
 				end)
@@ -1339,15 +1317,7 @@ if geneldb == false then
 			if not db then
 				db = true
 				toggleButtonStateOpen()
-
-				workspace.DescendantAdded:Connect(function(model)
-					if model:IsA("Model") and model.Name ~= player.Name then
-						addForceFieldAndHighlight(model)
-						continuouslyMonitorHumanoidHealth()
-						print("+")
-					end
-				end)
-
+				wadd()
 				processExistingModels()
 			else
 				db = false
