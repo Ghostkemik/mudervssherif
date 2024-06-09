@@ -1264,6 +1264,7 @@ if geneldb == false then
 		local function wadd()
 			local connection
 			connection = RunService.Heartbeat:Connect(function()
+				wait(1.5)
 				workspace.DescendantAdded:Connect(function(model)
 					if model:IsA("Model") and model.Name ~= player.Name then
 						connection:Disconnect()
