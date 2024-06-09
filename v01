@@ -1265,41 +1265,41 @@ if geneldb == false then
 
 		local function continuouslyMonitorHumanoidHealth(model)
 			wait(2)
-			local humanoid = model:FindFirstChildOfClass("Humanoid")
-			if db == true then
-				if humanoid and model.Name ~= player.Name then
-					local connection
-					if db == true then
-						connection = RunService.Heartbeat:Connect(function()
-							if humanoid.Health <= 0 then
-								print("Character died")
-								connection:Disconnect() -- Bağlantıyı iptal et
-
-								wait(5)
-								print("Waiting time finished")
-								wait(3)
-								if db == true then
+			for _, model3 in pairs(workspace:GetDescendants()) do
+				task.spawn(function()
+					if model3:IsA("Model") and model3.Name ~= player.Name then
+						local humanoid = model3:FindFirstChildOfClass("Humanoid")
+						if db == true then
+							local connection
+							if db == true then
+								connection = RunService.Heartbeat:Connect(function()
 									if humanoid.Health <= 0 then
-										for _, model2 in pairs(workspace:GetDescendants()) do
-											task.spawn(function()
-												if model2:IsA("Model") and model2.Name == player.Name then
+										print("Character died")
+										connection:Disconnect()
+
+										wait(5)
+										print("Waiting time finished")
+										wait(3)
+										if db == true then
+											if humanoid.Health <= 0 then
+												if model3:IsA("Model") and model3.Name ~= player.Name then
 													print("Character still dead, adding highlight")
 													local highlight = Instance.new("Highlight")
-													highlight.Parent = model2
+													highlight.Parent = model3
 													highlight.FillColor = Color3.fromRGB(255, 0, 0) 
 													highlight.FillTransparency = 0.5
 													highlight.OutlineTransparency = 0.5
 													print("Added highlight to model with Humanoid health greater than 0")
-													continuouslyMonitorHumanoidHealth(model2)
+													continuouslyMonitorHumanoidHealth(model)
 												end
-											end)
+											end
 										end
 									end
-								end
+								end)
 							end
-						end)
+						end
 					end
-				end
+				end)
 			end
 		end
 
